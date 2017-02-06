@@ -1,9 +1,9 @@
 # Countdown-Solver---Theory-of-Algorithms
 
 ## Description
-Project undertaken during my BSC (Hons) in Computing in Software Development degree at GMIT for a Theory of Algorithms class.
-The language used is Scheme/Racket.
-An attempt to solve Countdown, the game show we all grew up hearing about.
+1. Project undertaken during my BSC (Hons) in Computing in Software Development degree at GMIT for a Theory of Algorithms class.
+2. The language used is Scheme/Racket.
+3. An attempt to solve Countdown, the game show we all grew up hearing about.
 
 ## Rules:
 * A set of numbers are displayed:

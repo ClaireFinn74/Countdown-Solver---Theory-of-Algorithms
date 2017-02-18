@@ -1,9 +1,15 @@
 #lang racket
 ; I will start by defining my lists for countdown:
 ; My Random list of numbers and my Target Number between the numbers 100-199 inclusive.
-;The name of m yRandom list is RandomList.
+;The name of my Random list is RandomList.
 ; 6 of those numbers inside the list will be used to sum to a Target Number using the basic operands +. -, *, /
-;Defining a list can be done as follows:
+
+
+;I have added randomisation of numbers within the list using the random function.
+;However, I can only get one number generated from the list at a time so I may need to copy this function 5 more times to get the remaining numbers.
+;list-ref allows me to reference the list at a given index.
+;I have used (random 24) as my list has 24 numbers in it and I want to generate a random number using all 24 charactrs.
+;If I wanted to use less numbers in the list and randomise them I would reduce this number.
 
 (define RandomList (list-ref(list 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 25 50 75 100) (random 24)))
 RandomList

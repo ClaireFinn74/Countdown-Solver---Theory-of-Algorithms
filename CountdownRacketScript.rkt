@@ -9,5 +9,5 @@
 
 ;This will be my Target number between 101 and 999 generated randomly
 (define TargetNumber (random 101 999))
-;Calling my TargetNumber
-TargetNumber
+;Calling my TargetNumber and naming it with a comment
+ 'TargetNumber: TargetNumber

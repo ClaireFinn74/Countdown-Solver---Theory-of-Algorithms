@@ -3,6 +3,16 @@
 ; My Random list of numbers and my Target Number between the numbers 100-199 inclusive.
 ;The name of my Random list is RandomList.
 ; 6 of those numbers inside the list will be used to sum to a Target Number using the basic operands +. -, *, /
+<<<<<<< HEAD
+=======
+
+
+;I have added randomisation of numbers within the list using the random function.
+;However, I can only get one number generated from the list at a time so I may need to copy this function 5 more times to get the remaining numbers.
+;list-ref allows me to reference the list at a given index.
+;I have used (random 24) as my list has 24 numbers in it and I want to generate a random number using all 24 charactrs.
+;If I wanted to use less numbers in the list and randomise them I would reduce this number.
+>>>>>>> 657eea5792a30f9e24e726c6401d64c1ae2b80b6
 
 
 ;I have added randomisation of numbers within the list using the random function.

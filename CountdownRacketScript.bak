@@ -11,19 +11,8 @@
 ;I have used (random 24) as my list has 24 numbers in it and I want to generate a random number using all 24 charactrs.
 ;If I wanted to use less numbers in the list and randomise them I would reduce this number.
 
-(define RandomListFirstNumber (list-ref(list 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 25 50 75 100) (random 24)))
-(define RandomListSecondNumber (list-ref(list 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 25 50 75 100) (random 24)))
-(define RandomListThirdNumber (list-ref(list 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 25 50 75 100) (random 24)))
-(define RandomListFourthNumber (list-ref(list 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 25 50 75 100) (random 24)))
-(define RandomListFifthNumber (list-ref(list 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 25 50 75 100) (random 24)))
-(define RandomListSixthNumber (list-ref(list 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 25 50 75 100) (random 24)))
-
-'RandomListFirstNumber: RandomListFirstNumber
-'RandomListSecondNumber: RandomListSecondNumber
-'RandomListThirdNumber: RandomListThirdNumber
-'RandomListFourthNumber: RandomListFourthNumber
-'RandomListFifthNumber: RandomListFifthNumber
-'RandomListSixthNumber: RandomListSixthNumber
+(define RandomList (list-ref(list 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 25 50 75 100) (random 24)))
+RandomList
 
 
 ;This will be my Target number between 101 and 999 generated randomly

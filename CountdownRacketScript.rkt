@@ -34,9 +34,17 @@
 ;I'm defining a simple sum function called RandomSix to add the result of all of the Random Six numbers together.
 ;Now I have to think of a way to be able to decide whether that number is close to the Target Number.
 ;I also have to define - * / functions.
-(define(sum RandomSix)
-(if(null? RandomSix)
+(define(sum RandomSixAdd)
+(if(null? RandomSixAdd)
    0
-   (+ (car RandomSix) (sum(cdr RandomSix)))))
+   (+ (car RandomSixAdd) (sum(cdr RandomSixAdd)))))
 
-(sum(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber))
+'AddRandomSix: (sum(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber))
+
+;I'm defining a simple multiply function called RandomSixMultiply to multiply the result of all of the Random Six numbers together.
+(define(mult RandomSixMultiply)
+(if(null? RandomSixMultiply)
+   1
+   (* (car RandomSixMultiply) (mult(cdr RandomSixMultiply)))))
+
+'MultiplyRandomSix: (mult(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber))

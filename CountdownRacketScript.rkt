@@ -1,15 +1,25 @@
 #lang racket
-; I will start by defining my lists for countdown:
-; My Random list of numbers and my Target Number between the numbers 100-199 inclusive.
-;The name of my Random list is RandomList.
-; 6 of those numbers inside the list will be used to sum to a Target Number using the basic operands +. -, *, /
 
+; I am writing a single line comment
 
-;I have added randomisation of numbers within the list using the random function.
-;However, I can only get one number generated from the list at a time so I may need to copy this function 5 more times to get the remaining numbers.
-;list-ref allows me to reference the list at a given index.
-;I have used (random 24) as my list has 24 numbers in it and I want to generate a random number using all 24 charactrs.
-;If I wanted to use less numbers in the list and randomise them I would reduce this number.
+#| I am writing a:
+    multiline comment! |#
+
+#| I am writing a:
+  #| nested multiline comment |#
+   For Demonstration Purposes.
+|#
+
+#| I will start by defining my lists for countdown:
+     #| My Random list of numbers and my Target Number between the numbers 100-199 inclusive.
+     The name of my Random list is RandomList. |#
+   6 of those numbers inside the list will be used to sum to a Target Number using the basic operands +. -, *, / |#
+
+#| I have added randomisation of numbers within the list using the random function.
+   However, I can only get one number generated from the list at a time so I may need to copy this function 5 more times to get the remaining numbers. |#
+     #| list-ref allows me to reference the list at a given index.
+     I have used (random 24) as my list has 24 numbers in it and I want to generate a random number using all 24 charactrs.
+     If I wanted to use less numbers in the list and randomise them I would reduce this number. |#
 
 (define RandomListFirstNumber (list-ref(list 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 25 50 75 100) (random 24)))
 (define RandomListSecondNumber (list-ref(list 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 25 50 75 100) (random 24)))
@@ -26,14 +36,15 @@
 'RandomListSixthNumber: RandomListSixthNumber
 
 
-;This will be my Target number between 101 and 999 generated randomly
+; This will be my Target number between 101 and 999 generated randomly
 (define TargetNumber (random 101 999))
-;Calling my TargetNumber and naming it with a comment
+
+; Calling my TargetNumber and naming it with a comment
  'TargetNumber: TargetNumber
 
-;I'm defining a simple sum function called RandomSix to add the result of all of the Random Six numbers together.
-;Now I have to think of a way to be able to decide whether that number is close to the Target Number.
-;I also have to define - * / functions.
+#| I'm defining a simple sum function called RandomSix to add the result of all of the Random Six numbers together.
+ Now I have to think of a way to be able to decide whether that number is close to the Target Number.
+ I also have to define - * / functions. |#
 (define(sum RandomSixAdd)
 (if(null? RandomSixAdd)
    0
@@ -48,3 +59,6 @@
    (* (car RandomSixMultiply) (mult(cdr RandomSixMultiply)))))
 
 'MultiplyRandomSix: (mult(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber))
+
+;I'm defining a simple subtract function called RandomSixSubtract to subtract the result of all of the Random Six numbers away from each other.
+(- RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber)

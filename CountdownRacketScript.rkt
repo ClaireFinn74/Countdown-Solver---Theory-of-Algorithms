@@ -60,5 +60,8 @@
 
 'MultiplyRandomSix: (mult(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber))
 
-;I'm defining a simple subtract function called RandomSixSubtract to subtract the result of all of the Random Six numbers away from each other.
-(- RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber)
+;I'm defining a simple subtract function to subtract the result of all of the Random Six numbers away from each other.
+'SubtractRandomSix: (- RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber)
+
+;I'm defining a simple divide function to divide the result of all of the Random Six numbers.
+'DivideRandomSix: (/ RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber)

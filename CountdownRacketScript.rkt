@@ -42,6 +42,10 @@
 ; Calling my TargetNumber and naming it with a comment
  'TargetNumber: TargetNumber
 
+;Checking for a positive number
+(define (amount? a)
+  (and (number? a) (integer? a) (exact? a) (>= a 0)))
+
 #| I'm defining a simple sum function called RandomSix to add the result of all of the Random Six numbers together.
  Now I have to think of a way to be able to decide whether that number is close to the Target Number.
  I also have to define - * / functions. |#
@@ -69,17 +73,14 @@
    (- (car RandomSixSubtract) (subt(cdr RandomSixSubtract)))))
 
 ;Printing out the result of the subtraction.
+'SubtractRandomSixNegative: (negative? (subt(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber)))
 'SubtractRandomSix: (subt(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber))
 
-;Checking the subtraction is a positive number
-(define (neg RandomSixSubtract)
-  (if(<= 0 neg)
-  1
-   (- (car RandomSixSubtract) (neg(cdr RandomSixSubtract)))))
-
-;Printing out the negative search
-'SubtractRandomSixNegative: (neg(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber))
-
+(define(neg StopNegatives)
+(if(negative? subt)
+   "Negative"
+  (subt(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber))))
+neg
 ;I'm defining a simple divide function to divide the result of all of the Random Six numbers.
 (define(div RandomSixDivide)
 (if(null? RandomSixDivide)
@@ -87,4 +88,4 @@
    (/ (car RandomSixDivide) (div(cdr RandomSixDivide)))))
 
 ;Printing out the result of the division
-'DivideRandomSix: (div(list(/ RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber)))
+'DivideRandomSix: (negative? (div(list(/ RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber))))

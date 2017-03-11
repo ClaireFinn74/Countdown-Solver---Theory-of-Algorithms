@@ -50,6 +50,7 @@
    0
    (+ (car RandomSixAdd) (sum(cdr RandomSixAdd)))))
 
+;Printing out the result of the addition.
 'AddRandomSix: (sum(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber))
 
 ;I'm defining a simple multiply function called RandomSixMultiply to multiply the result of all of the Random Six numbers together.
@@ -58,10 +59,32 @@
    1
    (* (car RandomSixMultiply) (mult(cdr RandomSixMultiply)))))
 
+;Printing out the result of the multiplication.
 'MultiplyRandomSix: (mult(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber))
 
-;I'm defining a simple subtract function to subtract the result of all of the Random Six numbers away from each other.
-'SubtractRandomSix: (- RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber)
+;I'm defining a simple subtract function called RandomSixSubtract to subtract the result of all of the Random Six numbers
+(define(subt RandomSixSubtract)
+(if(null? RandomSixSubtract)
+   0
+   (- (car RandomSixSubtract) (subt(cdr RandomSixSubtract)))))
+
+;Printing out the result of the subtraction.
+'SubtractRandomSix: (subt(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber))
+
+;Checking the subtraction is a positive number
+(define (neg RandomSixSubtract)
+  (if(<= 0 neg)
+  1
+   (- (car RandomSixSubtract) (neg(cdr RandomSixSubtract)))))
+
+;Printing out the negative search
+'SubtractRandomSixNegative: (neg(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber))
 
 ;I'm defining a simple divide function to divide the result of all of the Random Six numbers.
-'DivideRandomSix: (/ RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber)
+(define(div RandomSixDivide)
+(if(null? RandomSixDivide)
+   1
+   (/ (car RandomSixDivide) (div(cdr RandomSixDivide)))))
+
+;Printing out the result of the division
+'DivideRandomSix: (div(list(/ RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber)))

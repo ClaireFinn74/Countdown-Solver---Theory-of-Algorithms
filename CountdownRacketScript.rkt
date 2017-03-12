@@ -66,11 +66,11 @@
    (- (car RandomSixSubtract) (subt(cdr RandomSixSubtract)))))
 
 #| I define a function called subtneg which prints true(#t) or false (#f) if the result of subt is negative.
-   Now seeing #t or #f wouldn't really make much sense to a user so I chose not to use this function, instead I use the function below that called subtprint.
+   Now seeing #t or #f wouldn't really make much sense to a user so I chose not to use this function, instead I use the function below called subtprint.
    Keeping subtneg incase I do need it at some stage though.
 |#
 
-'SubtractRandomSixNegative: (define subtneg(negative? (subt(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber))))
+(define subtneg(negative? (subt(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber))))
 
 
 #| Using a function defined as subtprint is where I deal with negative numbers. subtprint is just doing the same thing as the subtraction
@@ -87,10 +87,14 @@
              subtprint
              "Negative Numbers not allowed!")
 
-; Now onto divide, which will also start causing problems as it produces fractions.
+; Now onto divide, which will also start causing problems as it produces fractions and I want whole numbers to be output.
 (define(div RandomSixDivide)
 (if(null? RandomSixDivide)
    1
    (/ (car RandomSixDivide) (div(cdr RandomSixDivide)))))
 
-'DivideRandomSix: (negative? (div(list(/ RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber))))
+;To deal with fractions I use the 'round' function to round the fraction up to the nearest whole number which will be 0 lots of the time.
+'DivideRandomSix: (define divprint (div(list(round(/ RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber)))))
+
+;This prints out the division to the output
+divprint

@@ -1,15 +1,5 @@
 #lang racket
 
-; I am writing a single line comment
-
-#| I am writing a:
-    multiline comment! |#
-
-#| I am writing a:
-  #| nested multiline comment |#
-   For Demonstration Purposes.
-|#
-
 #| I will start by defining my lists for countdown:
      #| My Random list of numbers and my Target Number between the numbers 100-199 inclusive.
      The name of my Random list is RandomList. |#
@@ -35,40 +25,116 @@
 'RandomListFifthNumber: RandomListFifthNumber
 'RandomListSixthNumber: RandomListSixthNumber
 
-
 ; This will be my Target number between 101 and 999 generated randomly
 (define TargetNumber (random 101 999))
 
 ; Calling my TargetNumber and naming it with a comment
  'TargetNumber: TargetNumber
 
-#| I'm defining a simple sum function called RandomSix to add the result of all of the Random Six numbers together.
- Now I have to think of a way to be able to decide whether that number is close to the Target Number.
- I also have to define - * / functions. |#
+#| I'm defining a simple function called Sum bound to RandomSixAdd to add the result of all of the Random Six numbers together.
+ Checking for nulls in the first part of the if statement and if not null then add the car of the list to the cdr of the list recursively.
+|#
 (define(sum RandomSixAdd)
 (if(null? RandomSixAdd)
    0
    (+ (car RandomSixAdd) (sum(cdr RandomSixAdd)))))
 
-'AddRandomSix: (sum(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber))
+#| The function sum is now defined to recurse through a list up above and the RandomListFirstNumber...RandomListSixthNumber lists
+   already pick out a random number each to display to the output window.
+   Now I just have to sum the 6 random numbers together using the mechanism defined as sum. I do that below beside the comment 'AddRandomSix:
+|#
 
-;I'm defining a simple multiply function called RandomSixMultiply to multiply the result of all of the Random Six numbers together.
+
+'AddRandomSix: (define sumPrint (sum(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber)))
+
+;Print out the result of the summation
+sumPrint
+
+; I now do the same for multiply. Note that I now use 1 instead of 0 as you cannot multiply by 0.
 (define(mult RandomSixMultiply)
 (if(null? RandomSixMultiply)
    1
    (* (car RandomSixMultiply) (mult(cdr RandomSixMultiply)))))
 
-'MultiplyRandomSix: (mult(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber))
+'MultiplyRandomSix: (define multPrint(mult(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber)))
 
-(check-range RandomSixMultiply( 101 999)
+;Print out the result of the multilication
+multPrint
+
+#| I'm now doing the same for subtract, although, this output will now start to produce negative numbers which I don't want.
+   I think I have a mechanism for dealing with negative numbers below, by printing an error message if negative.
+|#
+
+(define(subt RandomSixSubtract)
+(if(null? RandomSixSubtract)
+   0
+   (- (car RandomSixSubtract) (subt(cdr RandomSixSubtract)))))
+
+#| I define a function called subtneg which prints true(#t) or false (#f) if the result of subt is negative.
+   Now seeing #t or #f wouldn't really make much sense to a user so I chose not to use this function, instead I use the function below called subtPrint.
+   Keeping subtneg incase I do need it at some stage though.
+|#
+
+(define subtneg(negative? (subt(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber))))
 
 
-;I'm defining a simple subtract function to subtract the result of all of the Random Six numbers away from each other.
-'SubtractRandomSix: (- RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber)
+#| Using a function defined as subtPrint is where I deal with negative numbers. subtPrint is just doing the same thing as the subtraction
+   of the six random numbers recursively would do but the key thing is that I'm giving this function itself a name, which I didn't do
+   previously with  sum and mult. Naming the function allows me to use it later on to deal with negative numbers. 
+|#
+ (define subtPrint(subt(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber)))
 
-;I'm defining a simple divide function to divide the result of all of the Random Six numbers.
-'DivideRandomSix: (/ RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber)
+;Print out the result of the subtraction
+'SubtractRandomSix: subtPrint
+
+#|  Now, using subtPrint defined previously, I check if subtPrint is less than (<) 0, print the result.
+    Else, Print a message saying "Negative Numbers are not allowed!"
+|#
+
+         (define subtPrintHandler(if(< 0 subtPrint)
+             subtPrint
+             "Negative Numbers not allowed!"))
 
 
+;Print out the result of the subtraction handler for negative numbers
+'subtPrintHandler: subtPrintHandler
 
-                                                                                                                                                                                                                 
+; Now onto divide, which will also start causing problems as it produces fractions and I want whole numbers to be output.
+(define(div RandomSixDivide)
+(if(null? RandomSixDivide)
+   1
+   (/ (car RandomSixDivide) (div(cdr RandomSixDivide)))))
+
+;To deal with fractions I use the 'round' function to round the fraction up to the nearest whole number which will be 0 lots of the time.
+'DivideRandomSix: (define divPrint (div(list(round(/ RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber)))))
+
+;This prints out the division to the output
+divPrint
+
+#| Now that I have the six random numbers and the target number set up, sum,mult,subt,div functions and a way to deal with fractions while dividing and
+   negative numbers while subtracting, I need to get to the most important part: Getting all possible permutations of the list (1-10, 25, 50, 75, 100)
+   against the target number (101-999) so that I can apply the sum/mult/div/subt functions to try to reach the target number. (if possible)|#
+
+
+#| First I'll set up the CartesianProduct of the Random Six Numbers lists and the operands + / * -.
+   This allows me to take every element of the first list, and pair it with all the possible combinations from the second list that can be done.
+   To do this I will have to take the  result of the random six numbers lists (sumPrint, divprint, multPrint, subtPrint) so I can then
+   sum,multiply,divide or subtract as necessary whenever 6 random numbers are generated.
+   To do that I wil have to put the 4 lists sumPrint,multPrint,subtPrint,divPrint into a list together too.
+|#
+
+;Okay si I'm now making my list to include my functions from  above
+(define sumMultSubtDiv(list sumPrint  divPrint subtPrint multPrint))
+
+;Printing out the list just to ensure it is correct:
+'sumMultSubtDiv: sumMultSubtDiv
+
+;Now I'm defining a list of operands to use:
+(define operandsList(list '+ '- '/ '*))
+
+;Printing the operandsList (which includes the quote to stop the function from being evaluated, therefore stopping the function displaying as a procedure):
+'operandsList: operandsList
+
+ (define cartesianFunction (cartesian-product (sumMultSubtDiv) (+ - / *)))
+
+'cartesianFunction: cartesianFunction

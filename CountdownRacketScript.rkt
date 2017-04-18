@@ -118,23 +118,24 @@ divPrint
 
 #| First I'll set up the CartesianProduct of the Random Six Numbers lists and the operands + / * -.
    This allows me to take every element of the first list, and pair it with all the possible combinations from the second list that can be done.
-   To do this I will have to take the  result of the random six numbers lists (sumPrint, divprint, multPrint, subtPrint) so I can then
+   To do this I will have to take the random six number lists and put them into a list (RandomSixAll) so I can then
    sum,multiply,divide or subtract as necessary whenever 6 random numbers are generated.
-   To do that I wil have to put the 4 lists sumPrint,multPrint,subtPrint,divPrint into a list together too.
 |#
 
-;Okay si I'm now making my list to include my functions from  above
-(define sumMultSubtDiv(list sumPrint  divPrint subtPrint multPrint))
-
-;Printing out the list just to ensure it is correct:
-'sumMultSubtDiv: sumMultSubtDiv
-
+;Putting the six random numbers into a list
+(define RandomSixAll (list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber))
 ;Now I'm defining a list of operands to use:
 (define operandsList(list '+ '- '/ '*))
 
-;Printing the operandsList (which includes the quote to stop the function from being evaluated, therefore stopping the function displaying as a procedure):
+;Printing RandomSixAll
+'RandomSixAll RandomSixAll
+;Printing the operandsList
 'operandsList: operandsList
 
- (define cartesianFunction (cartesian-product '(sumMultSubtDiv) '(+ - / *)))
+;Now I can try to find the cartesian-product (as described above) of my 5 operands.
+;I am using 5 operands as the Random Six Numbers will need to have an operand between them at all times.
+(define operandsForSixNumbers (cartesian-product operandsList operandsList operandsList operandsList operandsList))
 
-'cartesianFunction: cartesianFunction
+;Printing operandsForSixNumbers
+'operandsForSixNumbers operandsForSixNumbers
+

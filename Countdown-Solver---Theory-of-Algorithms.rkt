@@ -1,4 +1,36 @@
-#lang racket
+#lang br/quicklang
+
+;defining 'read-syntax' with a path and a port so I can read in my 'reader' script
+;which will allow the user to input values according to the functions I set out in this script.
+;A reader, con­verts source code from a string of char­ac­ters into paren­the­sized expres­sions.
+(define (read-syntax path port)
+;defining port as a string to read in
+  (define args (port->lines port))
+;defining 'handle-datums' formatted to 'handle' ~a, the next arguments passed to 'handle-datums' 
+  (define handle-datums (format-datums '(handle ~a) args))
+;defining a 'module', which allows me to make my file an 'expander'.
+;An expander, deter­mines how these expres­sions cor­re­spond to real Racket expres­sions, which are then eval­u­ated to pro­duce a result.
+;First, why is it called an expander?
+;Our reader con­sisted of a read-syntax func­tion that sur­rounded each line of the source file with (handle ...), in essence “expand­ing” it.
+;The expander will per­form a sim­i­lar process on the rest of the code, with the help of 'macros'/functions.
+
+;  ---- ADAPTED FROM: http://beautifulracket.com/stacker/the-expander.html ----
+  
+  (define module-datum `(module stacker-mod "Countdown-Solver----Theory-of-Algorithms.rkt"
+                          ,@handle-datums))
+  (datum->syntax #f module-datum))
+
+;This allow the reader to read this expander
+(provide read-syntax)
+
+;defining a macro/function to 'begin' our module. All modules have to have a 'module-begin'
+(define-macro (stacker-module-begin HANDLE-EXPR ...)
+  #'(#%module-begin
+     HANDLE-EXPR ...
+;display the first element on the stack
+     (display (first stack))))
+;provide this module even if file renamed
+(provide (rename-out [stacker-module-begin #%module-begin]))
 
 #| I will start by defining my lists for countdown:
      #| My Random list of numbers and my Target Number between the numbers 100-199 inclusive.
@@ -146,4 +178,42 @@ divPrint
 (define numsAndOps(remove-duplicates (cartesian-product  rsaPerm  operandsForSixNumbers)))
 
 ;printing out he numbers and operators
-'numsAndOps numsAndOps
+;'numsAndOps numsAndOps
+
+;Now I'm going to be working with a 'stack' to be able to'push' elements onto the stack, and 'pop' them off.
+;First, I will start with the empty list:
+(define stack empty)
+
+;Now I will define my pop-stack function for popping elements off my stack
+(define (pop-stack!)
+;Now I will define 'arg', as the 'first' element in the stack/the car of the stack
+  (define arg (first stack))
+;I'm now 'set'ting the stack as the 'rest' of the stack/car of the stack, without the first element/car
+  (set! stack (rest stack))
+  arg)
+
+;Now I'm defining my 'push' function to 'push elements onto the stack
+(define (push-stack! arg)
+;Now I set the stack to 'cons' or 'push' an element onto the stack
+  (set! stack (cons arg stack)))
+
+;Now I define my handle function which inspects each instruc­tion and decides what to do
+(define (handle [arg #f])
+ ;Now we write our condition for the stack:
+  (cond
+;number? means is the argument, within the reader script that is being passed, a number?
+;If the argument IS, in fact, a number then push this argument onto the stack.
+    [(number? arg) (push-stack! arg)]
+;Or, is the argument being passed within the reader equal to a * + / or - operand?
+    [(or (equal? * arg) (equal? + arg) (equal? / arg) (equal? - arg))
+;define 'op-result', whereby, two arguments already on the stack ar popped off and evaluated with the operand passed
+     (define op-result (arg (pop-stack!) (pop-stack!)))
+;push the result of the evaluation of the two elements popped off with the operand onto the stack
+     (push-stack! op-result)]))
+
+;make the 'handle' function available ti the 'reader' script
+(provide handle)
+
+;Also, make the opeands available to the reader script
+(provide + * / -)
+

@@ -16,7 +16,7 @@
 
 ;  ---- ADAPTED FROM: http://beautifulracket.com/stacker/the-expander.html ----
   
-  (define module-datum `(module stacker-mod "Countdown-Solver----Theory-of-Algorithms.rkt"
+  (define module-datum `(module stacker-mod "Countdown-Solver---Theory-of-Algorithms.rkt"
                           ,@handle-datums))
   (datum->syntax #f module-datum))
 

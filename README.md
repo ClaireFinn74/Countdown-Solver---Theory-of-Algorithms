@@ -132,16 +132,27 @@ To use my program, you can input any number of operators (numbers) as long as th
 
 For Example, take this sample Reader:
 
-`` #lang reader "Countdown-Solver---Theory-of-Algorithms.rkt"
+`` 
+#lang reader "Countdown-Solver---Theory-of-Algorithms.rkt"
+
 RandomListFourthNumber
+
 RandomListFifthNumber
+
 +
+
 RandomListFirstNumber
+
 RandomListSecondNumber
+
 +
+
 RandomListThirdNumber
+
 RandomListSixthNumber
+
 *
+
 * 
 
 ``

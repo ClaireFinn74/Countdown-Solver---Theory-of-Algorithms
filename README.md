@@ -1,6 +1,8 @@
 # Countdown-Solver---Theory-of-Algorithms
 
-__  ** DISCLAIMER: SKIP TO THE VERY BOTTOM IF YOU JUST WANT TO KNOW HOW TO RUN MY SCRIPTS BUT IT IS ADVISED TO READ THIS README AS IT EXPLAINS THE PROCESS/MY WAY OF THINKING **  __
+__  ** DISCLAIMER1: SKIP TO THE VERY BOTTOM IF YOU JUST WANT TO KNOW HOW TO RUN MY SCRIPTS BUT IT IS ADVISED TO READ THIS README AS IT EXPLAINS THE PROCESS/MY WAY OF THINKING **  __
+
+__  ** DISCLAIMER2: Much of my earlier work is commented out within the Racket Script as it poses a memory problem including it all. If you want to see what I have done earlier in the project either cycle through my previous commits or see what I left within my Racket Script. **  __
 
 ## Description
 1. Project undertaken during my *BSC (Hons) in Computing in Software Development* degree at GMIT for a **Theory of Algorithms** class.

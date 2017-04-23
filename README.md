@@ -139,21 +139,21 @@ RandomListFourthNumber
 
 RandomListFifthNumber
 
-+
+'+'
 
 RandomListFirstNumber
 
 RandomListSecondNumber
 
-+
+'+'
 
 RandomListThirdNumber
 
 RandomListSixthNumber
 
-*
+'*'
 
-* 
+'*' 
 
 ``
 

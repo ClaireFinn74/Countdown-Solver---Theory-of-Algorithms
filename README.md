@@ -1,6 +1,6 @@
 # Countdown-Solver---Theory-of-Algorithms
 
-__  **** DISCLAIMER: SKIP TO THE VERY BOTTOM IF YOU JUST WANT TO KNOW HOW TO RUN MY SCRIPTS BUT IT IS ADVISED TO READ THIS README AS IT EXPLAINS THE PROCESS/MY WAY OF THINKING ****  __
+__  ** DISCLAIMER: SKIP TO THE VERY BOTTOM IF YOU JUST WANT TO KNOW HOW TO RUN MY SCRIPTS BUT IT IS ADVISED TO READ THIS README AS IT EXPLAINS THE PROCESS/MY WAY OF THINKING **  __
 
 ## Description
 1. Project undertaken during my *BSC (Hons) in Computing in Software Development* degree at GMIT for a **Theory of Algorithms** class.
@@ -80,35 +80,59 @@ So, having seen what __Reader__ and __Expander__ could do for me, I went about a
 ``(define (handle [arg #f])``
 
 8. Now we write our condition for the stack:
+
 ` (cond ``
+
 ;number? means is the argument, within the reader script that is being passed, a number?
- ;If the argument IS, in fact, a number then push this argument onto the stack.]
-   `` [(number? arg) (push-stack! arg)]``
+
+;If the argument IS, in fact, a number then push this argument onto the stack.]
+
+`` [(number? arg) (push-stack! arg)]``
+
 ;Or, is the argument being passed within the reader equal to a * + / or - operand?
- ``[(or (equal? * arg) (equal? + arg) (equal? / arg) (equal? - arg))``
+
+``[(or (equal? * arg) (equal? + arg) (equal? / arg) (equal? - arg))``
+
 ;define 'op-result', whereby, two arguments already on the stack are popped off and evaluated with the operand passed
-  ``(define op-result (arg (pop-stack!) (pop-stack!)))``
+
+``(define op-result (arg (pop-stack!) (pop-stack!)))``
+
 ;push the result of the evaluation of the two elements popped off with the operand onto the stack
-   ``(push-stack! op-result)
-     (equal? stack TargetNumber)
-     ]
-    ))``
+
+``(push-stack! op-result)
+
+(equal? stack TargetNumber)
+
+]
+
+))``
 
 9. Then all I had to do was make the functions I wanted to use within my reader (My random six numbers, my operands, the Handler funcion and my Target Number) public:
 
-`` ;make the 'handle' function available to the 'reader' script
+`` 
+
+;make the 'handle' function available to the 'reader' script
+
 (provide handle)
+
 (provide TargetNumber)
 
 ;Also, make the opeands available to the reader script
+
 (provide + * / -)
 
 ;Make my random 6 numbers available to the reader
+
 (provide RandomListFirstNumber)
+
 (provide RandomListSecondNumber)
+
 (provide RandomListThirdNumber)
+
 (provide RandomListFourthNumber)
+
 (provide RandomListFifthNumber)
+
 (provide RandomListSixthNumber) ``
 
 10. I also did a little check above to see is the number that the user enters in, evaluated with the operands, equal to the Target Number:
@@ -139,23 +163,25 @@ RandomListFourthNumber
 
 RandomListFifthNumber
 
-'+'
+' +'
 
 RandomListFirstNumber
 
 RandomListSecondNumber
 
-'+'
+' + '
 
 RandomListThirdNumber
 
 RandomListSixthNumber
 
-'*'
+' * '
 
-'*' 
+' * ' 
 
 ``
+
+__PLEASE NOTE:__ Do not put quotation marks around the operands within Racket, they are only included here so Markdown will not render them as bullet points.
 
 If I only had one multiplication symbol specified, the interpreter wouldn't evaluate the numbers on the stack together but, it would, rather, take RandomListFourthNumber and RandomListFifth number off the top of the 'stack' and evaluate them with the plus operand below, then it would take RandomListFirstNumber and RandomListSecondNumber and add them using the + operand below it and then it would take RandomListThirdNumber and RandomListSixthNumber and evaluate them using the * symbol below them leaving the three results on the stack. The program is designed to pop the first number off the stack which, in this case, would be your last result.
 

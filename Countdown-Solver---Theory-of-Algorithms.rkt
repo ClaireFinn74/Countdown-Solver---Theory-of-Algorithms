@@ -8,7 +8,7 @@
   (define args (port->lines port))
 ;defining 'handle-datums' formatted to 'handle' ~a, the next arguments passed to 'handle-datums' 
   (define handle-datums (format-datums '(handle ~a) args))
-;defining a 'module', which allows me to make my file an 'expander'.
+;defining a 'module', which allows me to point to my file, an 'expander'.
 ;An expander, deter­mines how these expres­sions cor­re­spond to real Racket expres­sions, which are then eval­u­ated to pro­duce a result.
 ;First, why is it called an expander?
 ;Our reader con­sisted of a read-syntax func­tion that sur­rounded each line of the source file with (handle ...), in essence “expand­ing” it.
@@ -218,11 +218,11 @@
 
 
 
-;make the 'handle' function available ti the 'reader' script
+;make the 'handle' function available to the 'reader' script
 (provide handle)
 (provide TargetNumber)
 
-;Also, make the operands available to the reader script
+;Also, make the opeands available to the reader script
 (provide + * / -)
 
 ;Make my random 6 numbers available to the reader

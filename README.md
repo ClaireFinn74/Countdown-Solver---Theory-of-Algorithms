@@ -83,15 +83,15 @@ So, having seen what __Reader__ and __Expander__ could do for me, I went about a
 
 7. I defined my handle function which inspects each instruc­tion and decides what to do
 
-``(define (handle [arg #f])``
+`(define (handle [arg #f])`
 
 8. Now we write our condition for the stack:
 
-;number? means is the argument, within the reader script that is being passed, a number?
-;If the argument IS, in fact, a number then push this argument onto the stack.
-;Or, is the argument being passed within the reader equal to a * + / or - operand?
-;define 'op-result', whereby, two arguments already on the stack are popped off and evaluated with the operand passed
-;push the result of the evaluation of the two elements popped off with the operand onto the stack.
+  ;number? means is the argument, within the reader script that is being passed, a number?
+  ;If the argument IS, in fact, a number then push this argument onto the stack.
+  ;Or, is the argument being passed within the reader equal to a * + / or - operand?
+  ;define 'op-result', whereby, two arguments already on the stack are popped off and evaluated with the operand passed
+  ;push the result of the evaluation of the two elements popped off with the operand onto the stack.
 
 `
 (cond 
@@ -109,7 +109,9 @@ So, having seen what __Reader__ and __Expander__ could do for me, I went about a
 9. Then all I had to do was make the functions I wanted to use within my reader (My random six numbers, my operands, the Handler funcion and my Target Number) public:
 
  ;make the 'handle' function available to the 'reader' script
+ 
  ;Also, make the operands available to the reader script
+ 
  ;Make my random 6 numbers available to the reader
 
 

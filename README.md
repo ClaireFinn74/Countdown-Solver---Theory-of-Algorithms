@@ -196,7 +196,11 @@ Although I didn't do what I originally intended to do, I learned a lot about pro
 
 ## References
 http://beautifulracket.com/stacker/intro.html [Beautiful Racket Tutorials]
+
 http://beautifulracket.com/setup.html [How to install Beautiful Racket]
+
 https://racket-lang.org/ [Download Racket]
+
 https://docs.racket-lang.org/ [Racket Documentation]
+
 https://learnonline.gmit.ie/course/view.php?id=3758 [LearnOnline Theory Of Algorithms Class Information]

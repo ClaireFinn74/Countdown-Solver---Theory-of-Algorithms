@@ -50,7 +50,7 @@
 (define RandomListFifthNumber (list-ref(list 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 25 50 75 100) (random 24)))
 (define RandomListSixthNumber (list-ref(list 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 25 50 75 100) (random 24)))
 
-'RandomListFirstNumber: RandomListFirstNumber '(This is the firstnumber)
+'RandomListFirstNumber: RandomListFirstNumber
 'RandomListSecondNumber: RandomListSecondNumber
 'RandomListThirdNumber: RandomListThirdNumber
 'RandomListFourthNumber: RandomListFourthNumber
@@ -66,10 +66,10 @@
 #| I'm defining a simple function called Sum bound to RandomSixAdd to add the result of all of the Random Six numbers together.
  Checking for nulls in the first part of the if statement and if not null then add the car of the list to the cdr of the list recursively. |#
 
-(define(sum RandomSixAdd)
-(if(null? RandomSixAdd)
-   0
-   (+ (car RandomSixAdd) (sum(cdr RandomSixAdd))))) 
+;(define(sum RandomSixAdd)
+;(if(null? RandomSixAdd)
+  ; 0
+ ;  (+ (car RandomSixAdd) (sum(cdr RandomSixAdd))))) 
 
 #| The function sum is now defined to recurse through a list up above and the RandomListFirstNumber...RandomListSixthNumber lists
    already pick out a random number each to display to the output window.
@@ -77,19 +77,19 @@
 |#
 
 
-'AddRandomSix: (define sumPrint (sum(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber)))
+;'AddRandomSix: (define sumPrint (sum(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber)))
 
 ;Print out the result of the summation
-sumPrint
+;sumPrint
 
 ; I now do the same for multiply. Note that I now use 1 instead of 0 as you cannot multiply by 0.
-#| (define(mult RandomSixMultiply)
-(if(null? RandomSixMultiply)
-   1
-   (* (car RandomSixMultiply) (mult(cdr RandomSixMultiply)))))
+ ;(define(mult RandomSixMultiply)
+;(if(null? RandomSixMultiply)
+  ; 1
+ ;  (* (car RandomSixMultiply) (mult(cdr RandomSixMultiply)))))
 
-'MultiplyRandomSix: (define multPrint(mult(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber)))
-|#
+;'MultiplyRandomSix: (define multPrint(mult(list RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber)))
+
 
 ;Print out the result of the multilication
 ;multPrint
@@ -98,11 +98,11 @@ sumPrint
    I think I have a mechanism for dealing with negative numbers below, by printing an error message if negative.
 |#
 
-#|(define(subt RandomSixSubtract)
-(if(null? RandomSixSubtract)
-   0
-   (- (car RandomSixSubtract) (subt(cdr RandomSixSubtract)))))
-|#
+;(define(subt RandomSixSubtract)
+;(if(null? RandomSixSubtract)
+ ;  0
+  ; (- (car RandomSixSubtract) (subt(cdr RandomSixSubtract)))))
+
 #| I define a function called subtneg which prints true(#t) or false (#f) if the result of subt is negative.
    Now seeing #t or #f wouldn't really make much sense to a user so I chose not to use this function, instead I use the function below called subtPrint.
    Keeping subtneg incase I do need it at some stage though.
@@ -124,19 +124,19 @@ sumPrint
     Else, Print a message saying "Negative Numbers are not allowed!"
 |#
 
-#|         (define subtPrintHandler(if(< 0 subtPrint)
-             subtPrint
-             "Negative Numbers not allowed!"))
-|#
+  ;       (define subtPrintHandler(if(< 0 subtPrint)
+   ;          subtPrint
+    ;         "Negative Numbers not allowed!"))
+
 
 ;Print out the result of the subtraction handler for negative numbers
 ;'subtPrintHandler: subtPrintHandler
 
 ; Now onto divide, which will also start causing problems as it produces fractions and I want whole numbers to be output.
-#|(define(div RandomSixDivide)
-(if(null? RandomSixDivide)
-   1
-|# ;  (/ (car RandomSixDivide) (div(cdr RandomSixDivide)))))
+;(define(div RandomSixDivide)
+;(if(null? RandomSixDivide)
+;   1
+ ;  (/ (car RandomSixDivide) (div(cdr RandomSixDivide)))))
 
 ;To deal with fractions I use the 'round' function to round the fraction up to the nearest whole number which will be 0 lots of the time.
 ;'DivideRandomSix: (define divPrint (div(list(round(/ RandomListFirstNumber RandomListSecondNumber RandomListThirdNumber RandomListFourthNumber RandomListFifthNumber RandomListSixthNumber)))))
@@ -181,6 +181,7 @@ sumPrint
 ;printing out he numbers and operators
 ;'numsAndOps numsAndOps
 
+
 ;Now I'm going to be working with a 'stack' to be able to'push' elements onto the stack, and 'pop' them off.
 ;First, I will start with the empty list:
 (define stack empty)
@@ -210,27 +211,21 @@ sumPrint
 ;define 'op-result', whereby, two arguments already on the stack are popped off and evaluated with the operand passed
      (define op-result (arg (pop-stack!) (pop-stack!)))
 ;push the result of the evaluation of the two elements popped off with the operand onto the stack
-     (push-stack! op-result)]))
+     (push-stack! op-result)
+     (equal? stack TargetNumber)
+     ]
+    ))
 
 
-(define (TargetNumberCheck [argument #f])
- ;Now we write our condition for the stack:
-  (cond
-;number? means is the argument, within the reader script that is being passed, a number?
-;If the argument IS, in fact, a number then push this argument onto the stack.
-    [(positive? argument) (display argument)]
-;Or, is the argument being passed within the reader equal to a * + / or - operand?
-    [(or (equal? TargetNumber argument))
-;define 'op-result', whereby, two arguments already on the stack are popped off and evaluated with the operand passed
-     (define target-result (argument))
-;push the result of the evaluation of the two elements popped off with the operand onto the stack
-     (target-result)]))
+
 ;make the 'handle' function available ti the 'reader' script
 (provide handle)
 (provide TargetNumber)
 
 ;Also, make the opeands available to the reader script
 (provide + * / -)
+
+;Make my random 6 numbers available to the reader
 (provide RandomListFirstNumber)
 (provide RandomListSecondNumber)
 (provide RandomListThirdNumber)

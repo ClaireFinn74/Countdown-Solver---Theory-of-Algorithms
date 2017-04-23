@@ -7,7 +7,7 @@ __  ** DISCLAIMER: SKIP TO THE VERY BOTTOM IF YOU JUST WANT TO KNOW HOW TO RUN M
 2. The language used is **Scheme/Racket.**
 3. An attempt to **solve Countdown**, the game show.
 
-## Rules:
+## Rules [What this program SHOULD do]:
 * A set of numbers are displayed:
 * The numbers from **1-10 twice,** (for example 1, 1, 2, 2, 3, 3 etc up to 10) **25, 50, 75 and 100.**
 * The user will then be presented with a **random number within the range 101-999.** Let's say for example the number turned out to be 436.
@@ -16,7 +16,7 @@ __  ** DISCLAIMER: SKIP TO THE VERY BOTTOM IF YOU JUST WANT TO KNOW HOW TO RUN M
 * In this case though, **an error message will be displayed** if its *impossible* to exactly add up to the random number, therefore making it easier to solve Countdown.
 
 
-# Eventual Conclusion:
+# Eventual Conclusion [How I tried to go about implementing the 'Rules' using Racketlang]:
 This project was challenging. I started out writing six random lists so that I could output six random numbers. I then defined my Target Number between 1 and 999. I started out optimistic, using recursion to recurse through my lists using the operands _+ / * and -._ This worked out fine, printing the _sum, multiplication, division and subtracion_ to the REPL. I then thought that I would be able to make a list of operands and apply those operands to these functions by _permutating through the list_ of random 6 numbers.
 
 Unfortunately, the only output I was getting was the numbers themselves and the operands all displaying in different orders as permutation usually implies but there was no evaluation of the numbers with the operands. I could have used the _/ * + and - functions_ and applied those to the permutation of the list but this would result in me having to define exactly what to do at each stage of the permutation resulting in a long and complicated function.
@@ -67,7 +67,7 @@ So, having seen what __Reader__ and __Expander__ could do for me, I went about a
 
 3. Then I defined 'arg', as the 'first' element in the stack/the car of the stack
 
-  ``(define arg (first stack))``
+           ``(define arg (first stack))``
   
 
 `` (set! stack (rest stack))
@@ -97,18 +97,19 @@ So, having seen what __Reader__ and __Expander__ could do for me, I went about a
  
   ;push the result of the evaluation of the two elements popped off with the operand onto the stack.
 
-`
-(cond 
+          `
+          (cond 
 
- [(number? arg) (push-stack! arg)]
- 
-[(or (equal? * arg) (equal? + arg) (equal? / arg) (equal? - arg))
+           [(number? arg) (push-stack! arg)]
 
-(define op-result (arg (pop-stack!) (pop-stack!)))
+          [(or (equal? * arg) (equal? + arg) (equal? / arg) (equal? - arg))
 
-(push-stack! op-result)
+          (define op-result (arg (pop-stack!) (pop-stack!)))
 
-(equal? stack TargetNumber)])) `
+          (push-stack! op-result)
+
+          (equal? stack TargetNumber)])) `
+          
 
 9. Then all I had to do was make the functions I wanted to use within my reader (My random six numbers, my operands, the Handler funcion and my Target Number) public:
 
@@ -119,30 +120,28 @@ So, having seen what __Reader__ and __Expander__ could do for me, I went about a
  ;Make my random 6 numbers available to the reader
 
 
-(provide handle)
+           ``   (provide handle)
 
-(provide TargetNumber)
+              (provide TargetNumber)
 
-(provide + * / -)
+              (provide + * / -)
 
-(provide RandomListFirstNumber)
+              (provide RandomListFirstNumber)
 
-(provide RandomListSecondNumber)
+              (provide RandomListSecondNumber)
 
-(provide RandomListThirdNumber)
+              (provide RandomListThirdNumber)
 
-(provide RandomListFourthNumber)
+              (provide RandomListFourthNumber)
 
-(provide RandomListFifthNumber)
+              (provide RandomListFifthNumber)
 
-(provide RandomListSixthNumber)
+              (provide RandomListSixthNumber) ``
 
 
 10. I also did a little check above to see is the number that the user enters in, evaluated with the operands, equal to the Target Number:
 
-` (equal? stack TargetNumber ``
-
-
+  `` (equal? stack TargetNumber 
 
 
 # How the user should go about playing the game:

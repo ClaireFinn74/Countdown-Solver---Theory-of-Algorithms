@@ -1,6 +1,6 @@
 # Countdown-Solver---Theory-of-Algorithms
 
-__ **** DISCLAIMER: SKIP TO THE VERY BOTTOM IF YOU JUST WANT TO KNOW HOW TO RUN MY SCRIPTS BUT IT IS ADVISED TO READ THIS README AS IT EXPLAINS THE PROCESS/MY WAY OF THINKING **** __
+__  **** DISCLAIMER: SKIP TO THE VERY BOTTOM IF YOU JUST WANT TO KNOW HOW TO RUN MY SCRIPTS BUT IT IS ADVISED TO READ THIS README AS IT EXPLAINS THE PROCESS/MY WAY OF THINKING ****  __
 
 ## Description
 1. Project undertaken during my *BSC (Hons) in Computing in Software Development* degree at GMIT for a **Theory of Algorithms** class.

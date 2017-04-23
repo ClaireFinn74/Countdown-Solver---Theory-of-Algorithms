@@ -19,7 +19,7 @@ __  ** DISCLAIMER: SKIP TO THE VERY BOTTOM IF YOU JUST WANT TO KNOW HOW TO RUN M
 # Eventual Conclusion:
 This project was challenging. I started out writing six random lists so that I could output six random numbers. I then defined my Target Number between 1 and 999. I started out optimistic, using recursion to recurse through my lists using the operands _+ / * and -._ This worked out fine, printing the _sum, multiplication, division and subtracion_ to the REPL. I then thought that I would be able to make a list of operands and apply those operands to these functions by _permutating through the list_ of random 6 numbers.
 
-Unfortunately, the only output I was getting was the numbers themselves and the operands all displaying in different orders as permutation usually implies but there was no evaluation of the numbers with the operands. I could have used the _/ * + and - functions_ and applied those to the permutation of the list but this would result in me having to define exactly what to do at each stage of the permutation resulting ina long and complicated function.
+Unfortunately, the only output I was getting was the numbers themselves and the operands all displaying in different orders as permutation usually implies but there was no evaluation of the numbers with the operands. I could have used the _/ * + and - functions_ and applied those to the permutation of the list but this would result in me having to define exactly what to do at each stage of the permutation resulting in a long and complicated function.
 
 I couldn't find a way to apply the math functions to the lists through permutation but I did think there had to be a faster way to do this. I then figured, what if I tested out the __Reader/Expander__ way of doing things and worked with a __'stack'__? Surely then I could just __pop__ and __push__ things to that stack within a function?
 
@@ -88,9 +88,13 @@ So, having seen what __Reader__ and __Expander__ could do for me, I went about a
 8. Now we write our condition for the stack:
 
   ;number? means is the argument, within the reader script that is being passed, a number?
+  
   ;If the argument IS, in fact, a number then push this argument onto the stack.
+  
   ;Or, is the argument being passed within the reader equal to a * + / or - operand?
+ 
   ;define 'op-result', whereby, two arguments already on the stack are popped off and evaluated with the operand passed
+ 
   ;push the result of the evaluation of the two elements popped off with the operand onto the stack.
 
 `
@@ -149,35 +153,35 @@ My program, the reader, produces '#f' (false) if the user didn't reach the Targe
 
 # How to run my two scripts:
 
-To run this program, you can _'Clone or Dowmload'_ above, or simply just open two new Racket Scripts and call one of them _'stacker-test.rkt'_ which will act as the __'Reader'__, Call the other script _"Countdown-Solver---Theory-of-Algorithms.rkt"_ which will act as the _'Expander'_ and copy the code from the above script of the same name into your's.
+To run this program, you can _'Clone or Download'_ above, or simply just open two new Racket Scripts and call one of them _'stacker-test.rkt'_ which will act as the __'Reader'__, Call the other script _"Countdown-Solver---Theory-of-Algorithms.rkt"_ which will act as the _'Expander'_ and copy the code from the above script of the same name into your's.
 
 ## 'stacker-test.rkt' 
 To use my program, you can input any number of operators (numbers) as long as they have some corresponding operands (+ / * -) in RPN Notation (Reverse Polish Notation - Two numbers first and then an operand). Ensure you always have two numbers and an operand or your equation will not be evaluated.
 
 For Example, take this sample Reader:
 
-``
-#lang reader "Countdown-Solver---Theory-of-Algorithms.rkt"
+        ``
+        #lang reader "Countdown-Solver---Theory-of-Algorithms.rkt"
 
-RandomListFourthNumber
+        RandomListFourthNumber
 
-RandomListFifthNumber
+        RandomListFifthNumber
 
-' +'
+        ' +'
 
-RandomListFirstNumber
+        RandomListFirstNumber
 
-RandomListSecondNumber
+        RandomListSecondNumber
 
-' + '
+        ' + '
 
-RandomListThirdNumber
+        RandomListThirdNumber
 
-RandomListSixthNumber
+        RandomListSixthNumber
 
-' * '
+        ' * '
 
-' * '  ``
+        ' * '  ``
 
 __PLEASE NOTE:__ Do not put quotation marks around the operands within Racket, they are only included here so Markdown will not render them as bullet points.
 
@@ -186,3 +190,13 @@ If I only had one multiplication symbol specified, the interpreter wouldn't eval
 To counteract this and actually evaluate the results against each other you can add two more operators after the first multiplication symbol to evaluate the results.
 
 As long as there are two or more numbers on the stack, any number of operaters can be used. It will not work with one number and one operand.
+
+## Final Word:
+Although I didn't do what I originally intended to do, I learned a lot about programming through functional programming and I still feel as if the work I did complete could be useful. The computer itself does a lot work in the background when you use a newer language compared to defining every single function you do within a functional language. Being used to languages like C# and Java, it takes a bit of adjustment to get your mind around using Racket. It can be very daunting compared to other languages but it is is one thing every programmer should try out to get them thinking a lot deeper about what they are actually doing when programming in newer languages. If you think about what's going on behind the scenes, you may just solve problems a lot faster in future.
+
+## References
+http://beautifulracket.com/stacker/intro.html [Beautiful Racket Tutorials]
+http://beautifulracket.com/setup.html [How to install Beautiful Racket]
+https://racket-lang.org/ [Download Racket]
+https://docs.racket-lang.org/ [Racket Documentation]
+https://learnonline.gmit.ie/course/view.php?id=3758 [LearnOnline Theory Of Algorithms Class Information]

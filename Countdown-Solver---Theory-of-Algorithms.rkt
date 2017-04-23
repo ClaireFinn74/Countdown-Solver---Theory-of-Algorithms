@@ -222,7 +222,7 @@
 (provide handle)
 (provide TargetNumber)
 
-;Also, make the opeands available to the reader script
+;Also, make the operands available to the reader script
 (provide + * / -)
 
 ;Make my random 6 numbers available to the reader

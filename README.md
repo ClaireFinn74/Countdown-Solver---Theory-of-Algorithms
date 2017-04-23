@@ -58,70 +58,66 @@ So, having seen what __Reader__ and __Expander__ could do for me, I went about a
 ## Describing the Stack Function: (Adapted from Beautiful Racket):
 
 1. With the stack, I could first create a stack that started out as the empty list:
+
 `` (define stack empty) ``
 
 2. I then defined my pop-stack function for popping elements off my stack:
+
 ``(define (pop-stack!)``
 
 3. Then I defined 'arg', as the 'first' element in the stack/the car of the stack
+
   ``(define arg (first stack))``
   
-4. I went about 'set'ting the stack equal to the 'rest' of the stack/car of the stack, without the first element/car:
-  `` (set! stack (rest stack))
+
+`` (set! stack (rest stack))
   arg)``
 
 5. I went on to define my 'push' function to 'push elements onto the stack:
+
 ``(define (push-stack! arg)
 
 6. I set the stack to 'cons' or 'push' an element onto the stack
+
   ``(set! stack (cons arg stack)))``
 
 7. I defined my handle function which inspects each instruc­tion and decides what to do
+
 ``(define (handle [arg #f])``
 
 8. Now we write our condition for the stack:
 
-` (cond ``
-
 ;number? means is the argument, within the reader script that is being passed, a number?
-
-;If the argument IS, in fact, a number then push this argument onto the stack.]
-
-`` [(number? arg) (push-stack! arg)]``
-
+;If the argument IS, in fact, a number then push this argument onto the stack.
 ;Or, is the argument being passed within the reader equal to a * + / or - operand?
-
-``[(or (equal? * arg) (equal? + arg) (equal? / arg) (equal? - arg))``
-
 ;define 'op-result', whereby, two arguments already on the stack are popped off and evaluated with the operand passed
+;push the result of the evaluation of the two elements popped off with the operand onto the stack.
 
-``(define op-result (arg (pop-stack!) (pop-stack!)))``
+`
+(cond 
 
-;push the result of the evaluation of the two elements popped off with the operand onto the stack
+ [(number? arg) (push-stack! arg)]
+ 
+[(or (equal? * arg) (equal? + arg) (equal? / arg) (equal? - arg))
 
-``(push-stack! op-result)
+(define op-result (arg (pop-stack!) (pop-stack!)))
 
-(equal? stack TargetNumber)
+(push-stack! op-result)
 
-]
-
-))``
+(equal? stack TargetNumber)])) `
 
 9. Then all I had to do was make the functions I wanted to use within my reader (My random six numbers, my operands, the Handler funcion and my Target Number) public:
 
-`` 
+ ;make the 'handle' function available to the 'reader' script
+ ;Also, make the operands available to the reader script
+ ;Make my random 6 numbers available to the reader
 
-;make the 'handle' function available to the 'reader' script
 
 (provide handle)
 
 (provide TargetNumber)
 
-;Also, make the opeands available to the reader script
-
 (provide + * / -)
-
-;Make my random 6 numbers available to the reader
 
 (provide RandomListFirstNumber)
 
@@ -133,13 +129,15 @@ So, having seen what __Reader__ and __Expander__ could do for me, I went about a
 
 (provide RandomListFifthNumber)
 
-(provide RandomListSixthNumber) ``
+(provide RandomListSixthNumber)
+
 
 10. I also did a little check above to see is the number that the user enters in, evaluated with the operands, equal to the Target Number:
 
-``
-(equal? stack TargetNumber)
-``
+` (equal? stack TargetNumber ``
+
+
+
 
 # How the user should go about playing the game:
 
@@ -156,7 +154,7 @@ To use my program, you can input any number of operators (numbers) as long as th
 
 For Example, take this sample Reader:
 
-`` 
+``
 #lang reader "Countdown-Solver---Theory-of-Algorithms.rkt"
 
 RandomListFourthNumber
@@ -177,9 +175,7 @@ RandomListSixthNumber
 
 ' * '
 
-' * ' 
-
-``
+' * '  ``
 
 __PLEASE NOTE:__ Do not put quotation marks around the operands within Racket, they are only included here so Markdown will not render them as bullet points.
 

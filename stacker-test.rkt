@@ -1,4 +1,12 @@
 #lang reader "Countdown-Solver---Theory-of-Algorithms.rkt"
-1
-2
+RandomListFirstNumber
+RandomListSecondNumber
++
+RandomListThirdNumber
+RandomListFourthNumber
++
+RandomListFifthNumber
+RandomListSixthNumber
+*
++
 +

@@ -142,7 +142,9 @@ RandomListSecondNumber
 RandomListThirdNumber
 RandomListSixthNumber
 *
-* ``
+* 
+
+``
 
 If I only had one multiplication symbol specified, the interpreter wouldn't evaluate the numbers on the stack together but, it would, rather, take RandomListFourthNumber and RandomListFifth number off the top of the 'stack' and evaluate them with the plus operand below, then it would take RandomListFirstNumber and RandomListSecondNumber and add them using the + operand below it and then it would take RandomListThirdNumber and RandomListSixthNumber and evaluate them using the * symbol below them leaving the three results on the stack. The program is designed to pop the first number off the stack which, in this case, would be your last result.
 
